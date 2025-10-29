@@ -70,21 +70,13 @@ This will get you a different url.
 
 We're running ArgoCD on the port 8000, so we need to run apps on a different port.
 
-e.g. helm-guestbook, needs to run on a different port than ArgoCD, so we'll go with 8081
-
-**helm-guestbook**
+Port forwarding using ingress-nginx:
 
 ```shell
-kubectl port-forward -n default svc/helm-guestbook 8001:80
+kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8001:80
 ```
 
-**guestbook**
-
-```shell
-kubectl port-forward -n default svc/guestbook-ui-service 8001:80
-```
-
-Then access it in http://localhost:8001/
+Then you can access the apps in their defined host, adding the forwarded port: e.g. http://guestbook.local:8001/
 
 
 ### Minikube helpful commands

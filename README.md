@@ -49,3 +49,33 @@ to explore ArgoCD and GitOps!
 [badge_sock_shop]: https://cd.apps.argoproj.io/api/badge?revision=true&name=example.sock-shop
 [app_sync_waves]: https://cd.apps.argoproj.io/applications/example.sync-waves
 [badge_sync_waves]: https://cd.apps.argoproj.io/api/badge?revision=true&name=example.sync-waves
+
+
+### Running ArgoCD locally
+
+```shell
+kubectl port-forward svc/argocd-server -n argocd 8000:443
+```
+
+Then access it in https://localhost:8000/applications/
+
+
+### Running specific example apps locally
+
+We're running ArgoCD on the port 8000, so we need to run apps on a different port.
+
+e.g. helm-guestbook, needs to run on a different port than ArgoCD, so we'll go with 8081
+
+**helm-guestbook**
+
+```shell
+kubectl port-forward -n default svc/helm-guestbook 8001:80
+```
+
+**guestbook**
+
+```shell
+kubectl port-forward -n default svc/guestbook-ui-service 8001:80
+```
+
+Then access it in http://localhost:8001/

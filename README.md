@@ -59,6 +59,12 @@ kubectl port-forward svc/argocd-server -n argocd 8000:443
 
 Then access it in https://localhost:8000/applications/
 
+Or using minikube
+```shell
+minikube service argocd-server --url -n argocd
+```
+This will get you a different url.
+
 
 ### Running specific example apps locally
 
@@ -79,3 +85,41 @@ kubectl port-forward -n default svc/guestbook-ui-service 8001:80
 ```
 
 Then access it in http://localhost:8001/
+
+
+### Minikube helpful commands
+
+```shell
+# List of available services
+minikube service list
+┌───────────────┬─────────────────────────────────────────┬──────────────┬─────┐
+│   NAMESPACE   │                  NAME                   │ TARGET PORT  │ URL │
+├───────────────┼─────────────────────────────────────────┼──────────────┼─────┤
+│ argocd        │ argocd-applicationset-controller        │ No node port │     │
+│ argocd        │ argocd-dex-server                       │ No node port │     │
+│ argocd        │ argocd-metrics                          │ No node port │     │
+│ argocd        │ argocd-notifications-controller-metrics │ No node port │     │
+│ argocd        │ argocd-redis                            │ No node port │     │
+│ argocd        │ argocd-repo-server                      │ No node port │     │
+│ argocd        │ argocd-server                           │ http/80      │     │
+│               │                                         │ https/443    │     │
+│ argocd        │ argocd-server-metrics                   │ No node port │     │
+│ default       │ guestbook-ui-service                    │ 80           │     │
+│ default       │ helm-guestbook                          │ No node port │     │
+│ default       │ kubernetes                              │ No node port │     │
+│ default       │ web                                     │ 8080         │     │
+│ ingress-nginx │ ingress-nginx-controller                │ http/80      │     │
+│               │                                         │ https/443    │     │
+│ ingress-nginx │ ingress-nginx-controller-admission      │ No node port │     │
+│ kube-system   │ kube-dns                                │ No node port │     │
+└───────────────┴─────────────────────────────────────────┴──────────────┴─────┘
+
+# Get URL for running service
+minikube service <service-name> --url [-n <namespace>]
+
+# Examples
+minikube service argocd-server --url -n argocd
+minikube service web --url
+minikube service guestbook-ui-service --url
+minikube service helm-guestbook --url
+```

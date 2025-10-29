@@ -21,7 +21,7 @@ ingress:
   annotations: {}
   path: /
   hosts:
-    - guestbook.local
+    - helm-guestbook.local
   tls: []
 
 resources:

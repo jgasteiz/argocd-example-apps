@@ -21,7 +21,7 @@ ingress:
   annotations: {}
   path: /
   hosts:
-    - guestbook.localhost
+    - guestbook.local
   tls: []
 
 resources:
